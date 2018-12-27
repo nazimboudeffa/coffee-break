@@ -18,6 +18,9 @@ bootState = {
     game.load.image("loader", "assets/sprites/loader.png")
   },
   create: function() {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
     game.state.start("load")
   }
 },
@@ -59,7 +62,7 @@ loadState = {
     game.load.image('learn', 'assets/sprites/learn.png');
     game.load.image('phaser2', 'assets/sprites/phaser2.png');
 
-    game.load.image('cod', 'assets/pics/cod.jpg');
+    game.load.image('cod', 'assets/pics/Udklip.png');
     game.load.image('spacebar', 'assets/buttons/spacebar.png');
     game.load.image('fight', 'assets/buttons/fight.png');
     game.load.image('okey', 'assets/buttons/okey.png');
@@ -254,8 +257,13 @@ battleState = {
   create: function(){
     this.createPlayerCreatures();
     this.createEnemyCreatures();
-    fight = game.add.button(game.world.centerX, game.world.centerY + 200, 'fight', this.attack);
-    fight.anchor.setTo(.5,.5);
+    fight = game.add.button(200, 200, 'fight', this.attack);
+
+    okey = game.add.button(200, 300, 'okey', this.back);
+
+  },
+  back: function(){
+    game.state.start("play");
   },
   createPlayerCreatures: function(){
     playerBread = game.add.image(100, 70, 'breadA');
@@ -302,8 +310,7 @@ homeState = {
     playerOnion = game.add.image(100, 370, 'onionA');
     playerOnion.anchor.setTo(.5,.5);
 
-    okey = game.add.button(game.world.centerX, game.world.centerY + 200, 'okey', this.back);
-    okey.anchor.setTo(.5,.5);
+    okey = game.add.button(200, 300, 'okey', this.back);
   },
   back: function(){
     game.state.start("play");
